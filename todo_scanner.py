@@ -43,7 +43,7 @@ def get_files(dir, extensions):
 
 
 def create_parser():
-    default_extensions = ["py", "h", "cpp", "java", "js"]
+    default_extensions = [".py", ".h", ".cpp", ".java", ".js"]
     parser = argparse.ArgumentParser(description="Scan code files for TODO comments")
     parser.add_argument("-d", "--dir", help = "The directory to scan files in. Default: current directory.", required = False, default = os.getcwd())
     parser.add_argument("-ext", "--extensions", help = f"File extensions to include in the scan. Default: {default_extensions}", nargs="+", required = False, default = default_extensions)
@@ -59,7 +59,6 @@ def main(args):
     extensions = parsed_args.extensions
     should_export = parsed_args.export
 
-    extensions = [f".{ext}" for ext in extensions]
     file_paths = get_files(directory, extensions)
     todos = get_todos(file_paths, pattern)
     if should_export:
