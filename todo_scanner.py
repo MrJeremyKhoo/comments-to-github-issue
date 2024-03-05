@@ -1,9 +1,3 @@
-# iterate through all files
-# find the todo comment
-# support for .py - done
-# .cpp
-# .java for now
-
 import re
 import os
 import sys
@@ -19,6 +13,11 @@ def export_to_txt(dir, todos):
             for todo in todo_list:
                 f.write(f"{file_path}, {todo}\n")
 
+
+def print_to_cli(todos):
+    for file_path, todo_list in todos.items():
+        for todo in todo_list:
+            print(f"{file_path}, {todo}")
 
 def get_todos(file_paths, pattern):
     todos = defaultdict(list)
@@ -44,22 +43,25 @@ def get_files(dir, extensions):
 
 
 def main(args):
+    pattern = re.compile(r"^(#\s*todo):\s*")
+    default_extensions = ["py", "h", "cpp", "java", "js"]
     parser = argparse.ArgumentParser(description="Scan code files for TODO comments")
-    parser.add_argument("-d", "--dir", help = "The directory to scan files in, current directory by default.", required = False, default = os.getcwd())
-    parser.add_argument("-ext", "--extensions", help = "File extensions to include in the scan.", nargs="+", required = False, default = [".py", ".h", ".cpp", ".java", ".js"])
-    parser.add_argument("-e", "--export", help = "Export todo comments to a text file.", required = False, action="store_true", default=True)
-    print(args)
+    parser.add_argument("-d", "--dir", help = "The directory to scan files in. Default: current directory.", required = False, default = os.getcwd())
+    parser.add_argument("-ext", "--extensions", help = f"File extensions to include in the scan. Default: {default_extensions}", nargs="+", required = False, default = default_extensions)
+    parser.add_argument("-e", "--export", help = "Export todo comments to a text file. Default: False", required = False, action="store_true", default=False)
+    
     parsed_args = parser.parse_args(args[1:])
     directory = parsed_args.dir
     extensions = parsed_args.extensions
     should_export = parsed_args.export
 
-    print(parsed_args)
-    pattern = re.compile(r"^(#\s*todo):\s*")
+    extensions = [f".{ext}" for ext in extensions]
     file_paths = get_files(directory, extensions)
     todos = get_todos(file_paths, pattern)
     if should_export:
-        export_to_txt(os.getcwd(), todos)
+        export_to_txt(directory, todos)
+    else:
+        print_to_cli(todos)
 
 if __name__ == "__main__":
     main(sys.argv)
