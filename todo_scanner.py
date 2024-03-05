@@ -42,13 +42,17 @@ def get_files(dir, extensions):
     return res
 
 
-def main(args):
-    pattern = re.compile(r"^(#\s*todo):\s*")
+def create_parser():
     default_extensions = ["py", "h", "cpp", "java", "js"]
     parser = argparse.ArgumentParser(description="Scan code files for TODO comments")
     parser.add_argument("-d", "--dir", help = "The directory to scan files in. Default: current directory.", required = False, default = os.getcwd())
     parser.add_argument("-ext", "--extensions", help = f"File extensions to include in the scan. Default: {default_extensions}", nargs="+", required = False, default = default_extensions)
     parser.add_argument("-e", "--export", help = "Export todo comments to a text file. Default: False", required = False, action="store_true", default=False)
+    return parser
+
+def main(args):
+    pattern = re.compile(r"^(#\s*todo):\s*")
+    parser = create_parser()
     
     parsed_args = parser.parse_args(args[1:])
     directory = parsed_args.dir
