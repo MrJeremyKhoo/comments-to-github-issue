@@ -1,6 +1,6 @@
 # Sample Python File - test_file.py
 
-# TODO: Implement a function to add two numbers
+# todo: Implement a function to add two numbers
 def add_numbers(a, b):
     # TODO: Handle edge cases for input values
     result = a + b
