@@ -19,16 +19,26 @@ def print_to_cli(todos):
         for todo in todo_list:
             print(f"{file_path}, {todo}")
 
-def get_todos(file_paths, pattern):
+
+def get_regex_from_extension(extension):
+    if extension == ".py":
+        return re.compile(r"^(#\s*todo):\s*")
+    elif extension in [".h", ".cpp", ".java", ".js"]:
+        return re.compile(r"^(//\s*todo):\s*")
+    else:
+        return re.compile(r"^(todo):\s*")
+
+def get_todos(file_paths, patterns):
     todos = defaultdict(list)
     for file_path in file_paths:
         with open(file_path, "r") as file:
             for line_num, line in enumerate(file.readlines(), start=1):
                 line = line.strip()
                 line = line.lower()
-                if (pattern.search(line)):
-                    tokens = list(filter(None, pattern.split(line)))
-                    todos[file_path].append(f"line {line_num}: {tokens[1]}")
+                for pattern in patterns:
+                    if (pattern.search(line)):
+                        tokens = list(filter(None, pattern.split(line)))
+                        todos[file_path].append(f"line {line_num}: {tokens[1]}")
     return todos
 
 
@@ -51,7 +61,7 @@ def create_parser():
     return parser
 
 def main(args):
-    pattern = re.compile(r"^(#\s*todo):\s*")
+    # pattern = re.compile(r"^(#\s*todo):\s*")
     parser = create_parser()
     
     parsed_args = parser.parse_args(args[1:])
@@ -60,7 +70,8 @@ def main(args):
     should_export = parsed_args.export
 
     file_paths = get_files(directory, extensions)
-    todos = get_todos(file_paths, pattern)
+    patterns = [get_regex_from_extension(extension) for extension in extensions]
+    todos = get_todos(file_paths, patterns)
     if should_export:
         export_to_txt(directory, todos)
     else:
