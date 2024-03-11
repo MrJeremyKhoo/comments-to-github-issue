@@ -6,7 +6,7 @@ from collections import defaultdict
 
 def export_to_txt(dir, todos):
     file_name = os.path.basename(dir)
-    output_path = os.path.join(dir, f"{file_name}.txt")
+    output_path = os.path.join(os.getcwd(), f"{file_name}.txt")
 
     with open(output_path, "w") as f:
         for file_path, todo_list in todos.items():
@@ -20,6 +20,7 @@ def print_to_cli(todos):
             print(f"{file_path}, {todo}")
 
 
+# TODO: add support for multiline comments.
 def is_comment(string):
     return string in ["//", "#"]
 
@@ -31,7 +32,7 @@ def get_todos(file_paths):
             for line_num, line in enumerate(file.readlines(), start=1):
                 line = line.rstrip("\n")
                 tokens = line.split()
-                if len(tokens) > 0 and is_comment(tokens[0]):
+                if len(tokens) > 2 and is_comment(tokens[0]):
                     if "todo" in tokens[1].lower():
                         todos[file_path].append(f"line {line_num}: {' '.join(tokens[2:])}")
     return todos
