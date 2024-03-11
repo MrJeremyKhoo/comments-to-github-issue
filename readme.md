@@ -47,3 +47,5 @@ Explanation:
 A new text file `my_project.txt` will be created in your directory.
 
 ## Demo
+https://github.com/Agentum07/todo-scanner/assets/62797335/fc1360d2-d826-46f3-b653-fe0a42e0d02a
+
