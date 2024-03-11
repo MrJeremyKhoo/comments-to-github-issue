@@ -1,7 +1,4 @@
-Progam to consolidate all todos in a codebase. It finds and lists the file paths and the comment in your cli or exports to a text file.
-
 # Todo Scanner
-
 Python script that scans code files in a specified directory for TODO comments and lists them. It supports multiple file extensions and offers the option to export the findings to a text file.
 
 ## How to download
