@@ -70,7 +70,7 @@ def main(args):
     should_export = parsed_args.export
 
     file_paths = get_files(directory, extensions)
-    patterns = [get_regex_from_extension(extension) for extension in extensions]
+    patterns = set([get_regex_from_extension(extension) for extension in extensions])
     todos = get_todos(file_paths, patterns)
     if should_export:
         export_to_txt(directory, todos)
