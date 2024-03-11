@@ -43,6 +43,7 @@ Explanation:
 - Run the script in the directory `my_project`
 - Only look for todos in files with extension `.cpp`
 - export the todos to a text file
+
 A new text file `my_project.txt` will be created in your directory.
 
 ## Demo
