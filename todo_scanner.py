@@ -19,22 +19,17 @@ def print_to_cli(todos):
         for todo in todo_list:
             print(f"{file_path}, {todo}")
 
-
-# TODO: add support for multiline comments.
-def is_comment(string):
-    return string in ["//", "#"]
-
-
 def get_todos(file_paths):
-    todos = {}
+    todos = defaultdict(list)
+    todo_regex = re.compile(r'(?i)^\s*(?:#|\/\/|\/\*|\'\'\'|\"\"\")\s*.TODO:\s*(.*?)$') 
+
     for file_path in file_paths:
         with open(file_path, "r") as file:
-            file_content = file.read()  # Read the entire file into a single string
-            matches = re.finditer(r'(?i)^\s*#\s*\w*\s*TODO\s*(.*?)$', file_content, re.MULTILINE)
-            for match in matches:
-                if file_path not in todos:
-                    line_number = file_content.count('\n', 0, match.start()) + 1
-                todos.setdefault(file_path, []).append(f"line {line_number}: {match.group(1)}")
+            for line_num, line in enumerate(file.readlines(), start=1):
+                match = todo_regex.match(line)
+                if match:
+                    todo_text = match.group(1)
+                    todos[file_path].append(f"line {line_num}: {todo_text}")
     return todos
 
 def get_files(dir, extensions):
