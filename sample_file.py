@@ -7,7 +7,7 @@ def add_numbers(a, b):
     return result
 
 # This is a regular comment
-# TODO: Add error handling in the main function
+# TOdO: Add error handling in the main function
 def main():
     print(add_numbers(5, 7))
 

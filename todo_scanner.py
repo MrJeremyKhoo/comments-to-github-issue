@@ -26,17 +26,16 @@ def is_comment(string):
 
 
 def get_todos(file_paths):
-    todos = defaultdict(list)
+    todos = {}
     for file_path in file_paths:
         with open(file_path, "r") as file:
-            for line_num, line in enumerate(file.readlines(), start=1):
-                line = line.rstrip("\n")
-                tokens = line.split()
-                if len(tokens) > 2 and is_comment(tokens[0]):
-                    if "todo" in tokens[1].lower():
-                        todos[file_path].append(f"line {line_num}: {' '.join(tokens[2:])}")
+            file_content = file.read()  # Read the entire file into a single string
+            matches = re.finditer(r'(?i)^\s*#\s*\w*\s*TODO\s*(.*?)$', file_content, re.MULTILINE)
+            for match in matches:
+                if file_path not in todos:
+                    line_number = file_content.count('\n', 0, match.start()) + 1
+                todos.setdefault(file_path, []).append(f"line {line_number}: {match.group(1)}")
     return todos
-
 
 def get_files(dir, extensions):
     res = set()
@@ -74,4 +73,3 @@ def main(args):
 
 if __name__ == "__main__":
     main(sys.argv)
-

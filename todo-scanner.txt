@@ -1,0 +1,20 @@
+/home/jeremy/repo/todo-scanner/todo_scanner.py, line 23: add support for multiline comments.
+/home/jeremy/repo/todo-scanner/sample_file.py, line 3: Implement a function to add two numbers
+/home/jeremy/repo/todo-scanner/sample_file.py, line 5: Handle edge cases for input values
+/home/jeremy/repo/todo-scanner/sample_file.py, line 10: Add error handling in the main function
+/home/jeremy/repo/todo-scanner/sample_file.py, line 14: Create a class to manage data
+/home/jeremy/repo/todo-scanner/sample_file.py, line 16: Define methods to read and write data
+/home/jeremy/repo/todo-scanner/sample_file.py, line 21: Implement data reading logic
+/home/jeremy/repo/todo-scanner/sample_file.py, line 25: Implement data writing logic
+/home/jeremy/repo/todo-scanner/sample_file.py, line 28: Write unit tests for the DataManager class
+/home/jeremy/repo/todo-scanner/sample_files/sample_file.py, line 3: Implement a function to add two numbers
+/home/jeremy/repo/todo-scanner/sample_files/sample_file.py, line 5: Handle edge cases for input values
+/home/jeremy/repo/todo-scanner/sample_files/sample_file.py, line 10: Add error handling in the main function
+/home/jeremy/repo/todo-scanner/sample_files/sample_file.py, line 14: Create a class to manage data
+/home/jeremy/repo/todo-scanner/sample_files/sample_file.py, line 16: Define methods to read and write data
+/home/jeremy/repo/todo-scanner/sample_files/sample_file.py, line 21: Implement data reading logic
+/home/jeremy/repo/todo-scanner/sample_files/sample_file.py, line 25: Implement data writing logic
+/home/jeremy/repo/todo-scanner/sample_files/sample_file.py, line 28: Write unit tests for the DataManager class
+/home/jeremy/repo/todo-scanner/sample_files/sample_cpp.cpp, line 6: Implement the addition logic
+/home/jeremy/repo/todo-scanner/sample_files/sample_cpp.cpp, line 13: Add user input functionality
+/home/jeremy/repo/todo-scanner/sample_files/sample_cpp.cpp, line 17: Improve loop logic
