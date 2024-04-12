@@ -2,6 +2,7 @@ import re
 import os
 import sys
 import argparse
+import json
 from collections import defaultdict
 
 def export_to_txt(dir, todos):
@@ -12,7 +13,6 @@ def export_to_txt(dir, todos):
         for file_path, todo_list in todos.items():
             for todo in todo_list:
                 f.write(f"{file_path}, {todo}\n")
-
 
 def print_to_cli(todos):
     for file_path, todo_list in todos.items():
@@ -51,7 +51,6 @@ def create_parser():
     return parser
 
 def main(args):
-    # pattern = re.compile(r"^(#\s*todo):\s*")
     parser = create_parser()
     
     parsed_args = parser.parse_args(args[1:])
@@ -64,7 +63,7 @@ def main(args):
     if should_export:
         export_to_txt(directory, todos)
     else:
-        print_to_cli(todos)
+        return todos
 
 if __name__ == "__main__":
     main(sys.argv)
