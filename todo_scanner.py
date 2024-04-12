@@ -2,7 +2,6 @@ import re
 import os
 import sys
 import argparse
-import json
 from collections import defaultdict
 
 def export_to_txt(dir, todos):
@@ -21,7 +20,7 @@ def print_to_cli(todos):
 
 def get_todos(file_paths):
     todos = defaultdict(list)
-    todo_regex = re.compile(r'(?i)^\s*(?:#|\/\/|\/\*|\'\'\'|\"\"\")\s*.TODO:\s*(.*?)$') 
+    todo_regex = re.compile(r'(?i)^\s*(?:#|\/\/|\/\*|\'\'\'|\"\"\")\s*TODO:\s*(.*?)$') 
 
     for file_path in file_paths:
         with open(file_path, "r") as file:
