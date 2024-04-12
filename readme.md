@@ -48,10 +48,6 @@ print to console
 
 https://github.com/Agentum07/todo-scanner/assets/62797335/fc1360d2-d826-46f3-b653-fe0a42e0d02a
 
-add to github issues
-
-https://github.com/MrJeremyKhoo/todo-scanner/assets/73585045/a6b8fd70-e841-4ca2-8541-f006d1592da1
-
 
 ## Extensions
 - Add support for more languages
